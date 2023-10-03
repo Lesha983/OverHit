@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10707989b6ab4614b55e111724523ddd, type: 3}
+  m_Name: GoldCurrency
+  m_EditorClassIdentifier: 
+  Name: <sprite name="soft-currency">
+  Icon: {fileID: 0}
+  Description: 
+  ShowPrice: 1
+  Items:
+  - {fileID: 11400000, guid: 4d9007e4036c2534daf802fb042a2fc5, type: 2}
+  - {fileID: 11400000, guid: 7cc308ec2b4ad0040a920128c6b36e9f, type: 2}

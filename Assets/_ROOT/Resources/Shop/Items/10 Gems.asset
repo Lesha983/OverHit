@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d39a4fbf2a44b358f231a1624b24e9f, type: 3}
+  m_Name: 10 Gems
+  m_EditorClassIdentifier: 
+  id: gems-10-item
+  productType: 0
+  LimitedBoughtCount: 0
+  MaxBoughtCount: 0
+  Pricings:
+  - Currency: {fileID: 11400000, guid: e14321d30949e8f4091e33aaea07ca58, type: 2}
+    Price: 1
+    LimitedQuantity: 1
+    MaxStack: 1
+    MinutesToReload: 0.3
+    NextStackAvailableAt: 0
+  Description: Small gems pack
+  Icon: {fileID: -6035184913542872328, guid: 21cce0c4839d18349b2c8bb7337ebfc5, type: 3}
+  RewardCount: 10

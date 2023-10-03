@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ecc7529a57483e910d5c3a3b8d3f36, type: 3}
+  m_Name: AppsFlyerSettings
+  m_EditorClassIdentifier: 
+  IsDebugLog: 0
+  AppsFlyerDeveloperKey: 2n4n32kn4k32n4k32n4
+  IosAppId: 23l4k234k23;4k;32k4;23k

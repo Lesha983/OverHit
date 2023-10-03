@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3493c597ec24911bb47e6df9d02daf2, type: 3}
+  m_Name: Legendary Chest
+  m_EditorClassIdentifier: 
+  Loots:
+  - LootType: {fileID: 11400000, guid: 232f84919d6cfc4468dab62103717833, type: 2}
+    Count: {x: 100, y: 120}
+    Magnifier: {fileID: 11400000, guid: 6e31b21cf2a30e84fa780a2cd82b4986, type: 2}
+    MagnifierStep: 4
+    MagnifyingPercent: 0.25
+    Weightless: 1
+    Weight: 0
+  - LootType: {fileID: 11400000, guid: cb2bf1bcd349c8e4f844f928cd108ae8, type: 2}
+    Count: {x: 10, y: 12}
+    Magnifier: {fileID: 11400000, guid: 6e31b21cf2a30e84fa780a2cd82b4986, type: 2}
+    MagnifierStep: 4
+    MagnifyingPercent: 0.25
+    Weightless: 0
+    Weight: 4
+  - LootType: {fileID: 11400000, guid: cb2bf1bcd349c8e4f844f928cd108ae8, type: 2}
+    Count: {x: 10, y: 12}
+    Magnifier: {fileID: 11400000, guid: 6e31b21cf2a30e84fa780a2cd82b4986, type: 2}
+    MagnifierStep: 4
+    MagnifyingPercent: 0.25
+    Weightless: 0
+    Weight: 4
+  - LootType: {fileID: 11400000, guid: cb2bf1bcd349c8e4f844f928cd108ae8, type: 2}
+    Count: {x: 10, y: 12}
+    Magnifier: {fileID: 11400000, guid: 6e31b21cf2a30e84fa780a2cd82b4986, type: 2}
+    MagnifierStep: 4
+    MagnifyingPercent: 0.25
+    Weightless: 0
+    Weight: 4
+  - LootType: {fileID: 11400000, guid: cb2bf1bcd349c8e4f844f928cd108ae8, type: 2}
+    Count: {x: 10, y: 12}
+    Magnifier: {fileID: 11400000, guid: 6e31b21cf2a30e84fa780a2cd82b4986, type: 2}
+    MagnifierStep: 4
+    MagnifyingPercent: 0.25
+    Weightless: 0
+    Weight: 4
+  - LootType: {fileID: 11400000, guid: cb2bf1bcd349c8e4f844f928cd108ae8, type: 2}
+    Count: {x: 10, y: 12}
+    Magnifier: {fileID: 11400000, guid: 6e31b21cf2a30e84fa780a2cd82b4986, type: 2}
+    MagnifierStep: 4
+    MagnifyingPercent: 0.25
+    Weightless: 0
+    Weight: 4
+  DropCount: {x: 2, y: 6}
+  View: {fileID: 345567533584686953, guid: aa1c5d1d98972304eb823149380e1153, type: 3}

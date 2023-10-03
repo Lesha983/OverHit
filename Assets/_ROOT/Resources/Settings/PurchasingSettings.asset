@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac793d3dd11941b5bef1f191a2c22877, type: 3}
+  m_Name: PurchasingSettings
+  m_EditorClassIdentifier: 
+  GooglePlayTangle:
+    Data: 9FYXyREZ8RFYzRFK8KFKzFFMuFEW
+    Order: 0,1
+    Key: 47
+  AppleTangle:
+    Data: St7hGqONXrzDND6hR+SKbD2Nh7Xkimw9jYe1wpT61czJn9fpztL63L6ipbijvrP73PrezMmfzsnZx4u6o6yjqau+o6Wk6ou/vqKluKO+s/uopq/qub6rpK6ruK7qvq+4p7nqq7irqb6jqa/qub6rvq+nr6S+ueT6vqOso6mrvq/qqLPqq6Sz6rqruL7MyZ/XxM7czt7hGqONXrzDND6hR7295Ku6uqav5Kmlp+Wrurqmr6mrE/y1C02fE21Tc/iIMRIfu1S0a5i6pq/qmKWlvuqJi/rU3cf6/Pr++PrbzMmfzsDZwIu6uqav6oOkqeT7X1Swxm6NQZEe3P35AQ7FhwTeoxvPyslIy8XK+kjLwMhIy8vKLltjw//4+/76+fyQ3cf5//r4+vP4+/761U9JT9FT9439OGNRikTmHnta2BK1i2JSMxsArFbuodsaaXEu0eAJ1dVbEdSNmiHPJ5SzTuch/Gidhp8mzSa380lBmeoZ8g57dVCFwKE14TbClPpIy9vMyZ/X6s5Iy8L6SMvO+mFpu1iNmZ8LZeWLeTIxKboHLGmGf/BnPsXEyljBe+vc5L4f9scRqNwKqfm9PfDN5pwhEMXrxBBwudOFf4+01YahmlyLQw6+qMHaSYtN+UBL4EyCTD3Hy8vPz8r6qPvB+sPMyZ/C4czLz8/NyMvc1KK+vrq58OXlveqrpK7qqa+4vqOso6mrvqOlpOq6+fyQ+qj7wfrDzMmfzszZyJ+Z+9nqiYv6SMvo+sfMw+BMgkw9x8vLy/xThueyfSdGURY5vVE4vBi9+oUL+kjOcfpIyWlqycjLyMjLyPrHzMPHzMPgTIJMPcfLy8/PyslIy8vKloMSvFX53q9rvV4D58jJy8rLaUjLk23Pw7bdipzb1L4ZfUHp8Y1pH6WtRcJ+6j0BZubqpbp89cv6Rn2JBWIWtOj/AO8fE8UcoR5o7unbPWtme/qSJpDO+EaieUXXFK+5Na2Ur3akruqppaSuo76jpaS56qWs6r+5r33Rd1mI7tjgDcXXfIdWlKkCgUrd3PrezMmfzsnZx4u6uqav6pilpb5B00MUM4GmP81h6PrIItL0MprDGUW5S6oM0ZHD5Vh4Mo6COqryVN8/5fpLCczC4czLz8/NyMj6S3zQS3mu/+nfgd+T13lePTxWVAWacAuSmu4oIRt9uhXFjyvtADunsictf93dsPpIy7z6xMzJn9fFy8s1zs7JyMvFV/c54YPi0AI0BH9zxBOU1hwB9+z67szJn87B2deLurqmr+qJr7i+9+yt6kD5oD3HSAUUIWnlM5mgka7qpazqvqKv6r6ir6Tqq7q6pqOpq8z6xczJn9fZy8s1zs/6ycvLNfrXuqav6omvuL6jrKOpq76jpaTqi78D07g/l8QftZVROO/JcJ9Fh5fHO3Q+uVEkGK7FAbOF/hJo9DOyNaECpq/qg6Sp5Pvs+u7MyZ/OwdnXi7rOzNnIn5n72frbzMmfzsDZwIu6ukjLyszD4EyCTD2prs/L+ks4+uDMmK+mo6ukqa/qpaTqvqKjueqpr7iz6qu5ub+nr7nqq6mpr7q+q6Spr+bqqa+4vqOso6mrvq/quqWmo6mzmmBAHxAuNhrDzf16v7/r
+    Order: 32,31,5,11,42,46,39,30,36,58,39,58,18,14,30,49,17,49,51,33,24,23,57,25,31,35,45,36,30,48,32,47,36,52,35,54,45,43,59,51,49,55,43,47,53,45,57,51,56,55,56,51,52,56,58,57,58,59,59,59,60
+    Key: 202
+  Validate: 0

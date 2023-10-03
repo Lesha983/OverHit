@@ -1,0 +1,22 @@
+{
+    "name": "Proto.LootBox",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c6042a2e5a0dfb349adc92441ca196fb",
+        "GUID:0751c4054d74fa94bbd8e2c3c1a0f254",
+        "GUID:ddc40879901cb5343a2d118342610007",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:b8da7581cbfe3e647ba3cb495632bbe7",
+        "GUID:1f2833ba45da20345b8fd424f21ec86b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

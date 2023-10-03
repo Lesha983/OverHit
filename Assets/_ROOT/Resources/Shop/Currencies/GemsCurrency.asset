@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d23f0944acc464396c34f0cb0d26daf, type: 3}
+  m_Name: GemsCurrency
+  m_EditorClassIdentifier: 
+  Name: <sprite name="hard-currency">
+  Icon: {fileID: 0}
+  Description: 
+  ShowPrice: 1
+  Items:
+  - {fileID: 11400000, guid: 8668bc69d46809e49b8d24e91ba08bd9, type: 2}
+  - {fileID: 11400000, guid: 68d1271251877634789f81f07300a757, type: 2}

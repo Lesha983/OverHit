@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de06a98c63c43fd969cd5345a372252, type: 3}
+  m_Name: LegendaryChestGroup
+  m_EditorClassIdentifier: 
+  ShopItemViewPrefab: {fileID: 6518513639351764560, guid: 2dfab624b9206e148a8342276f5d2c5c, type: 3}
+  ShopGroupViewPrefab: {fileID: 4774606602343602127, guid: bf285d37758988745988dc234b3fbe4b, type: 3}
+  ShopItems:
+  - {fileID: 11400000, guid: 2bd3681c166c9b441b32a2346830486b, type: 2}

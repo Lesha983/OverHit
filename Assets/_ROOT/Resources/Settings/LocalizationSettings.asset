@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c540a51e01c47ef960a84ec8c21d6df, type: 3}
+  m_Name: LocalizationSettings
+  m_EditorClassIdentifier: 
+  LocalizationItemPrefab: {fileID: 8253428529531265990, guid: 577f01a6f542d984194bc59c70dd0ee6, type: 3}
+  LocalizationSwitchPanelPrefab: {fileID: 2153126974617431337, guid: d33de92f8aecdc4468187226023c809d, type: 3}
+  Items:
+  - Language: 10
+    Icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    Disabled: 0
+  - Language: 30
+    Icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    Disabled: 0

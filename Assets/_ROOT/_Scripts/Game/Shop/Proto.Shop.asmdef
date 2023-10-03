@@ -1,0 +1,24 @@
+{
+    "name": "Proto.Shop",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b8da7581cbfe3e647ba3cb495632bbe7",
+        "GUID:0751c4054d74fa94bbd8e2c3c1a0f254",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:c6042a2e5a0dfb349adc92441ca196fb",
+        "GUID:60d5363776dfe5c43b683b0e3f3b7f49",
+        "GUID:f0db8331d24045743b2f47a746486acb",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:33b2ecc1254e17e458276e934c339d99",
+        "GUID:60bfecf5cb232594891bc622f40d6bed"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

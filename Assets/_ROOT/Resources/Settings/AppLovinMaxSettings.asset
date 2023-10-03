@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9720f449c998411fb4be077254477b47, type: 3}
+  m_Name: AppLovinMaxSettings
+  m_EditorClassIdentifier: 
+  SdkKey: 2l3j4l234jl324jl23j4l5j23l5j23l
+  IosInterstitialAdUnitId: dummy_id
+  IosRewardedAdUnitId: dummy_id
+  IosBannerAdUnitId: dummy_id
+  AndroidInterstitialAdUnitId: dummy_id
+  AndroidRewardedAdUnitId: dummy_id
+  AndroidBannerAdUnitId: dummy_id

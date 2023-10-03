@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a69c1f71c70439e90993cc756bee438, type: 3}
+  m_Name: Epic Chest
+  m_EditorClassIdentifier: 
+  id: epic-chest-item
+  productType: 0
+  LimitedBoughtCount: 0
+  MaxBoughtCount: 0
+  Pricings:
+  - Currency: {fileID: 11400000, guid: e14321d30949e8f4091e33aaea07ca58, type: 2}
+    Price: 1
+    LimitedQuantity: 1
+    MaxStack: 1
+    MinutesToReload: 0.3
+    NextStackAvailableAt: 0
+  - Currency: {fileID: 11400000, guid: fdbbc7b113366b3428c59fe4b52b73f1, type: 2}
+    Price: 50
+    LimitedQuantity: 0
+    MaxStack: 1
+    MinutesToReload: 0
+    NextStackAvailableAt: 0
+  Description: Gives Big Reward
+  Icon: {fileID: 5105379619990647884, guid: 21cce0c4839d18349b2c8bb7337ebfc5, type: 3}
