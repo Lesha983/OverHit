@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using ChillPlay.OverHit.Service;
 using UnityEngine;
 using Zenject;
 
 using SF = UnityEngine.SerializeField;
 
-namespace ChillPlay.OverHit
+namespace ChillPlay.OverHit.Installer
 {
 	public class GameInstaller : MonoInstaller
 	{
@@ -16,6 +17,10 @@ namespace ChillPlay.OverHit
 		{
 			foreach (var so in _settingsObjects)
 				BindSettings(so);
+
+			BindService<AimService>();
+
+			FindMonoService<CameraService>();
 		}
 
 		private void FindMonoService<T>() where T : MonoBehaviour
