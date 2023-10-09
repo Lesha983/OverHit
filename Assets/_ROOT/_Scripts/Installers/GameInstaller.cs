@@ -19,6 +19,7 @@ namespace ChillPlay.OverHit.Installer
 				BindSettings(so);
 
 			BindService<AimService>();
+			BindService<SlowMotionService>();
 
 			FindMonoService<CameraService>();
 		}

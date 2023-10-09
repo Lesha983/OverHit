@@ -6,7 +6,7 @@ using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Weapons
 {
-	public class ProjectilePrefab : MonoBehaviour
+	public class ProjectilePrefab : MonoBehaviour, ISlowMotion
 	{
 		[SF] protected ParticleSystem effectPrefab;
 
@@ -23,6 +23,11 @@ namespace ChillPlay.OverHit.Weapons
 			_damage = damage;
 			_layer = layer;
 			_isShooting = true;
+		}
+
+		public void SetTimeScale(float timeScale)
+		{
+			Time.timeScale = timeScale;
 		}
 
 		//protected virtual void Hit(RaycastHit hit)

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Agent;
+using ChillPlay.OverHit.Service;
 using UnityEngine;
+using Zenject;
 using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Weapons
@@ -22,6 +24,8 @@ namespace ChillPlay.OverHit.Weapons
 
 		private int _randomOffset => UnityEngine.Random.Range(-directionOffset, directionOffset);
 
+		[Inject] private SlowMotionService _slowMotionService;
+
 		public override void StartShooting(LayerMask layer)
 		{
 			_layer = layer;
@@ -30,8 +34,11 @@ namespace ChillPlay.OverHit.Weapons
 
 		public override void EndShooting()
 		{
-			foreach(var projectile in _projectiles)
+			foreach (var projectile in _projectiles)
+			{
 				projectile.OnHit -= OnHit;
+				_slowMotionService.RemoveObject(projectile);
+			}
 		}
 
 		private IEnumerator SpawnProjectiles()
@@ -42,6 +49,7 @@ namespace ChillPlay.OverHit.Weapons
 				var projectile = Instantiate(projectilePrefab, spawnMarker.position, Quaternion.identity);
 				projectile.OnHit += OnHit;
 				_projectiles.Add(projectile);
+				_slowMotionService.AddObject(projectile);
 				var direction = Quaternion.Euler(0f, _randomOffset, 0f) * transform.forward;
 				projectile.Shoot(direction, projectileDamage, _layer);
 				yield return delay;

@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Agent;
+using ChillPlay.OverHit.Service;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Enemy
 {
 	[RequireComponent(typeof(NavMeshAgent))]
-	public class Enemy : Pawn, IInteractable
+	public class Enemy : Pawn, IInteractable, ISlowMotion
 	{
 		[SF] private LayerMask obstaclesLayer;
 		[SF] private CollisionZone zone;
@@ -27,11 +29,14 @@ namespace ChillPlay.OverHit.Enemy
 		private Transform _targetTransform;
 		private bool _hasTarget;
 
+		[Inject] private SlowMotionService _slowMotionService;
+
 		protected override void Awake()
 		{
 			base.Awake();
 			_meshAgent = GetComponent<NavMeshAgent>();
 			zone.Setup(targetLayer);
+			_slowMotionService.AddObject(this);
 		}
 
 		private void OnEnable()
@@ -122,5 +127,9 @@ namespace ChillPlay.OverHit.Enemy
 			Debug.DrawRay(transform.position, direction, color);
 		}
 
+		public void SetTimeScale(float timeScale)
+		{
+			Time.timeScale = timeScale;
+		}
 	}
 }

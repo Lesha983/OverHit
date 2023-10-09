@@ -27,6 +27,7 @@ namespace ChillPlay.OverHit.Agent
 		[Inject] AimService _aimService;
 		[Inject] AimSettings _aimSettings;
 		[Inject] CameraService _cameraService;
+		[Inject] SlowMotionService _slowMotionService;
 
 		protected override void Awake()
 		{
@@ -47,7 +48,9 @@ namespace ChillPlay.OverHit.Agent
 				yield return new WaitUntil(() => startAiming);
 				_aimService.OnStartAim -= startAimCallback;
 
+				_slowMotionService.TurnOn();
 				yield return Aiming(aimInfo);
+				_slowMotionService.TurnOff();
 				SetupAfterAiming();
 				yield return MoveAndAttack(aimInfo);
 			}
