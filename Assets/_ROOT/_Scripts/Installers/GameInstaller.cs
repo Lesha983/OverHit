@@ -20,6 +20,8 @@ namespace ChillPlay.OverHit.Installer
 
 			BindService<AimService>();
 			BindService<SlowMotionService>();
+			BindService<GameState>();
+			BindService<GameSave>();
 
 			FindMonoService<CameraService>();
 		}
