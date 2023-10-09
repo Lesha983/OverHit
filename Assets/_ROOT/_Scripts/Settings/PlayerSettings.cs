@@ -11,5 +11,21 @@ namespace ChillPlay.OverHit.Settings
 	{
 		[field: SF]
 		public LayerMask Layer { get; private set; }
+
+		[field: Header("Dash Marker")]
+		[field: SF]
+		public Color MarkerMoveColor { get; private set; }
+
+		[field: SF]
+		public Color MarkerAttackColor { get; private set; }
+
+		[field: SF]
+		public Sprite MarkerMoveSprite { get; private set; }
+
+		[field: SF]
+		public Sprite MarkerMeleeAttackSprite { get; private set; }
+
+		[field: SF]
+		public Sprite MarkerRangedAttackSprite { get; private set; }
 	}
 }

@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using ChillPlay.OverHit.Agent;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
-
 using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Enemy
 {
 	[RequireComponent(typeof(NavMeshAgent))]
-	public class Enemy : MonoBehaviour, IInteractable
+	public class Enemy : Pawn, IInteractable
 	{
-		[SF] private CollisionZone _zone;
-		[SF] private int _heals;
+		[SF] private LayerMask obstaclesLayer;
+		[SF] private CollisionZone zone;
+		[SF] private float attackRange;
+		[SF] private float reloadTime;
+		[SF] private float angularSpeed;
+		[SF] private int damage;
+		[SF] private float hitDuration;
 
 		public InteractableType Type => InteractableType.Enemy;
 
@@ -20,22 +26,22 @@ namespace ChillPlay.OverHit.Enemy
 
 		private Transform _targetTransform;
 		private bool _hasTarget;
-		private float _attackRange = 2f;
-		private bool _isAlive => _heals > 0;
 
-		private void Awake()
+		protected override void Awake()
 		{
+			base.Awake();
 			_meshAgent = GetComponent<NavMeshAgent>();
+			zone.Setup(targetLayer);
 		}
 
 		private void OnEnable()
 		{
-			_zone.OnPlayerInZone += DetectAgent;
+			zone.OnColliderInZone += DetectAgent;
 		}
 
 		private void OnDisable()
 		{
-			_zone.OnPlayerInZone -= DetectAgent;
+			zone.OnColliderInZone -= DetectAgent;
 		}
 
 		private void DetectAgent(Transform agent)
@@ -45,36 +51,76 @@ namespace ChillPlay.OverHit.Enemy
 
 			_targetTransform = agent;
 			_hasTarget = true;
-			StartCoroutine(nameof(Attack));
+			StartCoroutine(nameof(CoreRoutine));
 		}
 
-		private IEnumerator Attack()
+		private IEnumerator CoreRoutine()
 		{
-			while (_isAlive)
+			var reload = new WaitForSeconds(reloadTime);
+
+			while (IsAlive)
 			{
-				var rotateTween = transform.DOLookAt(_targetTransform.position, 1f).SetRelative();
+				var angle = Vector3.Angle(transform.forward, _targetTransform.forward);
+				var rotateDuration = angle / angularSpeed;
+				var rotateTween = transform.DOLookAt(_targetTransform.position, rotateDuration);
 				yield return rotateTween.WaitForCompletion();
 
-				var distance = (transform.position - _targetTransform.position).magnitude;
+				yield return MoveToAttackRangeRoutine();
 
-				if(distance > _attackRange)
+				yield return AttackRoutine();
+				yield return reload;
+			}
+
+			Die();
+		}
+
+		private IEnumerator MoveToAttackRangeRoutine()
+		{
+			var distance = float.MaxValue;
+			while (distance > attackRange)
+			{
+				var direction = (transform.position - _targetTransform.position).normalized;
+				distance = (transform.position - _targetTransform.position).magnitude;
+				if (Physics.Raycast(transform.position,
+									direction,
+									out var obstacle,
+									attackRange,
+									obstaclesLayer))
 				{
-					var direction = (transform.position - _targetTransform.position).normalized;
-					var targetPos = _targetTransform.position + direction * _attackRange;
-					yield return MoveTo(targetPos);
-					continue;
+					Debug.Log("HAVE OBSTACLE");
+					distance += float.MaxValue;
+					DebugLine(direction, Color.red);
 				}
+
+				DebugLine(direction, Color.green);
+
+				//var targetPos = _targetTransform.position + direction * attackRange;
+				_meshAgent.SetDestination(_targetTransform.position);
+				//yield return MoveToRoutine(targetPos);
 
 				yield return null;
 			}
 		}
 
-		private IEnumerator MoveTo(Vector3 targetPos)
+		private IEnumerator AttackRoutine()
+		{
+			weapon.StartShooting(targetLayer);
+			yield return new WaitForSeconds(hitDuration);
+			weapon.EndShooting();
+		}
+
+		private IEnumerator MoveToRoutine(Vector3 targetPos)
 		{
 			_meshAgent.SetDestination(targetPos);
 
 			while (_meshAgent.hasPath)
 				yield return null;
 		}
+
+		private void DebugLine(Vector3 direction, Color color)
+		{
+			Debug.DrawRay(transform.position, direction, color);
+		}
+
 	}
 }
