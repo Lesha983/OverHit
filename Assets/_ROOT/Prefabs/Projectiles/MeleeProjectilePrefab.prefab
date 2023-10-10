@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectPrefab: {fileID: 7708223592088792104, guid: eb62c172dc34e47b8955580abc507871, type: 3}
-  hitDistance: 1
 --- !u!65 &3672555174181893086
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63,7 +62,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

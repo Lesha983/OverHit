@@ -13,19 +13,16 @@ namespace ChillPlay.OverHit.Weapons
 		[SF] private ProjectilePrefab _projectilePrefab;
 		[SF] private int projectileDamage;
 
-		private LayerMask _layer;
 		private ProjectilePrefab _projectile;
 		private bool _isShooting;
 
-		public override void StartShooting(LayerMask layer)
+		public override void StartShooting(LayerMask damageablelayer, Action callback = null)
 		{
 			if (_isShooting)
 				return;
 
-			_layer = layer;
 			_projectile = Instantiate(_projectilePrefab, _spawnMarker);
-			_projectile.OnHit += () => OnHit?.Invoke();
-			_projectile.Shoot(transform.forward, projectileDamage, _layer);
+			_projectile.Shoot(transform.forward, projectileDamage, damageablelayer, callback);
 			_isShooting = true;
 		}
 
@@ -34,7 +31,6 @@ namespace ChillPlay.OverHit.Weapons
 			if (!_isShooting)
 				return;
 
-			_projectile.OnHit -= () => OnHit?.Invoke();
 			Destroy(_projectile.gameObject);
 			_isShooting = false;
 		}

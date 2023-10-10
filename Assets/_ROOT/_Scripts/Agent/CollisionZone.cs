@@ -18,6 +18,7 @@ namespace ChillPlay.OverHit.Agent
 		public void Setup(LayerMask targetLayer)
 		{
 			_targetLayer = targetLayer;
+			HasColliderInZone = false;
 		}
 
 		private void OnTriggerEnter(Collider other)

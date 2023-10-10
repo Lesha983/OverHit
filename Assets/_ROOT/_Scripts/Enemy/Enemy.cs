@@ -20,17 +20,17 @@ namespace ChillPlay.OverHit.Enemy
 		[SF] private int damage;
 		[SF] private float hitDuration;
 
+		[Inject] private SlowMotionService _slowMotionService;
+
 		public InteractableType Type => InteractableType.Enemy;
 
 		private Transform _targetTransform;
 		private bool _hasTarget;
 
-		[Inject] private SlowMotionService _slowMotionService;
-
 		protected override void Awake()
 		{
 			base.Awake();
-			zone.Setup(targetLayer);
+			zone.Setup(damageableLayer);
 			_slowMotionService.AddObject(this);
 		}
 
@@ -98,14 +98,9 @@ namespace ChillPlay.OverHit.Enemy
 
 		private IEnumerator AttackRoutine()
 		{
-			weapon.StartShooting(targetLayer);
+			weapon.StartShooting(damageableLayer);
 			yield return new WaitForSeconds(hitDuration);
 			weapon.EndShooting();
-		}
-
-		private void DebugLine(Vector3 direction, Color color)
-		{
-			Debug.DrawRay(transform.position, direction, color);
 		}
 
 		public void SetTimeScale(float timeScale)

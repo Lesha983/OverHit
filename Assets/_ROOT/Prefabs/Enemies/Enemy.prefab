@@ -108,13 +108,14 @@ GameObject:
   - component: {fileID: 2266702474034493212}
   - component: {fileID: 2743569134705404623}
   - component: {fileID: 3608598949795363625}
+  - component: {fileID: 5913432238711639416}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6237062257109363720
 Transform:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e7fc17bf1ab4756807ee23f3787258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
+  damageableLayer:
     serializedVersion: 2
     m_Bits: 512
   heals: 20
@@ -253,6 +254,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5913432238711639416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058537114556891370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee229cd15fbc4fe1a2ff019ef7da101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
 --- !u!1 &7455509661945471074
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +367,7 @@ MonoBehaviour:
   spawnMarker: {fileID: 8811064126913590710}
   projectilePrefab: {fileID: 379788858985005112, guid: 0196e2d1540414a41ba71f86817fd0b8, type: 3}
   projectileCount: 3
+  projectileDelay: 0.2
   projectileDamage: 5
   directionOffset: 15
 --- !u!1 &8535563955693903965

@@ -147,13 +147,9 @@ namespace ChillPlay.OverHit.Agent
 
 			transform.forward = direction;
 			var twin = transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
-			weapon.StartShooting(targetLayer);
+			weapon.StartShooting(damageableLayer, () => twin.Kill());
 
-			Action callback = () => twin.Kill();
-
-			weapon.OnHit += callback;
 			yield return twin.WaitForCompletion();
-			weapon.OnHit -= callback;
 
 			weapon.EndShooting();
 		}

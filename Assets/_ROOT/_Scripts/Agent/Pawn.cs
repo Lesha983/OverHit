@@ -10,7 +10,7 @@ namespace ChillPlay.OverHit.Agent
 	[RequireComponent(typeof(PawnMovement))]
 	public class Pawn : MonoBehaviour, IDamageable
 	{
-		[SF] protected LayerMask targetLayer;
+		[SF] protected LayerMask damageableLayer;
 		[SF] protected int heals;
 		[SF] protected AWeapon weapon;
 

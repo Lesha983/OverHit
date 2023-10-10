@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using ChillPlay.OverHit.Enemy;
-using ChillPlay.OverHit.Settings;
 using ChillPlay.OverHit.Weapons;
 using UnityEngine;
 
@@ -11,7 +9,6 @@ namespace ChillPlay.OverHit.Agent
 {
 	public class RangedPlayer : Player
 	{
-		[SF] private float radiusMeleeZone;
 		[SF] private AWeapon rangedWeapon;
 		[SF] private CollisionZone collisionZone;
 		[SF] private GameObject meleeZoneSprite;
@@ -19,7 +16,7 @@ namespace ChillPlay.OverHit.Agent
 		protected override void Awake()
 		{
 			base.Awake();
-			collisionZone.Setup(targetLayer);
+			collisionZone.Setup(damageableLayer);
 		}
 
 		protected override void SetupBeforeAiming()
@@ -44,8 +41,10 @@ namespace ChillPlay.OverHit.Agent
 
 		protected override IEnumerator MoveAndAttack(AimInfo aimInfo)
 		{
-			if (aimInfo.TargetIsEnemy && !CheckTargetForMelleZone(aimInfo.TargetPosition))
+			if (aimInfo.TargetIsEnemy && !collisionZone.HasColliderInZone)
 			{
+				var direction = (aimInfo.TargetPosition - transform.position).normalized;
+				transform.forward = direction;
 				RangedShoot(aimInfo.TargetPosition);
 				yield break;
 			}
@@ -53,17 +52,11 @@ namespace ChillPlay.OverHit.Agent
 			yield return base.MoveAndAttack(aimInfo);
 		}
 
-		private bool CheckTargetForMelleZone(Vector3 targetPos)
-		{
-			var distance = (targetPos - transform.position).magnitude;
-			return distance <= radiusMeleeZone;
-		}
-
 		private void RangedShoot(Vector3 targetPos)
 		{
 			var direction = (targetPos - transform.position).normalized;
 			transform.forward = direction;
-			rangedWeapon.StartShooting(targetLayer);
+			rangedWeapon.StartShooting(damageableLayer);
 		}
 
 		private void ShowMeleeZone()
