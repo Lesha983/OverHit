@@ -77,29 +77,23 @@ namespace ChillPlay.OverHit.Enemy
 		private IEnumerator MoveToAttackRangeRoutine()
 		{
 			var distance = float.MaxValue;
+			_movement.MoveTo(_targetTransform.position);
+
 			while (distance > attackRange)
 			{
-				var direction = (transform.position - _targetTransform.position).normalized;
+				var direction = (_targetTransform.position - transform.position).normalized;
 				distance = (transform.position - _targetTransform.position).magnitude;
 				if (Physics.Raycast(transform.position,
 									direction,
 									out var obstacle,
 									attackRange,
 									obstaclesLayer))
-				{
-					Debug.Log("HAVE OBSTACLE");
-					distance += float.MaxValue;
-					DebugLine(direction, Color.red);
-				}
-
-				DebugLine(direction, Color.green);
-
-				//var targetPos = _targetTransform.position + direction * attackRange;
-				_meshAgent.SetDestination(_targetTransform.position);
-				//yield return MoveToRoutine(targetPos);
+					distance = float.MaxValue;
 
 				yield return null;
 			}
+
+			_movement.StopMovement();
 		}
 
 		private IEnumerator AttackRoutine()
@@ -107,14 +101,6 @@ namespace ChillPlay.OverHit.Enemy
 			weapon.StartShooting(targetLayer);
 			yield return new WaitForSeconds(hitDuration);
 			weapon.EndShooting();
-		}
-
-		private IEnumerator MoveToRoutine(Vector3 targetPos)
-		{
-			_meshAgent.SetDestination(targetPos);
-
-			while (_meshAgent.hasPath)
-				yield return null;
 		}
 
 		private void DebugLine(Vector3 direction, Color color)

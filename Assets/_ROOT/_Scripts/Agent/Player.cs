@@ -59,13 +59,9 @@ namespace ChillPlay.OverHit.Agent
 			Die();
 		}
 
-		public IEnumerator MoveToRoutine(Vector3 targetPos)
+		public IEnumerator AgentMoveToRoutine(Vector3 destination)
 		{
-			var distance = (targetPos - transform.position).magnitude;
-			var duration = distance / speed;
-
-			var twin = transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
-			yield return twin.WaitForCompletion();
+			yield return _movement.MoveToRoutine(destination);
 		}
 
 		private IEnumerator Aiming(AimInfo aimInfo)

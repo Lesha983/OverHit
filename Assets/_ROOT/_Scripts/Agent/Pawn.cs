@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Weapons;
 using UnityEngine;
-using UnityEngine.AI;
 using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Agent
 {
-	[RequireComponent(typeof(NavMeshAgent))]
+	[RequireComponent(typeof(PawnMovement))]
 	public class Pawn : MonoBehaviour, IDamageable
 	{
 		[SF] protected LayerMask targetLayer;
@@ -18,7 +17,7 @@ namespace ChillPlay.OverHit.Agent
 		public Action OnDie;
 
 		private int _currentHeals;
-		protected NavMeshAgent _meshAgent;
+		protected PawnMovement _movement;
 
 		public bool IsAlive => _currentHeals > 0;
 
@@ -29,8 +28,8 @@ namespace ChillPlay.OverHit.Agent
 
 		protected virtual void Awake()
 		{
+			_movement = GetComponent<PawnMovement>();
 			_currentHeals = heals;
-			_meshAgent = GetComponent<NavMeshAgent>();
 		}
 
 		protected void Die()
