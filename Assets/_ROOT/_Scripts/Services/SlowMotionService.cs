@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ChillPlay.OverHit.Service
@@ -8,21 +9,34 @@ namespace ChillPlay.OverHit.Service
 	{
 		private float _slowMoTimeScale = 0.25f;
 		private float _originalTimeScale = 1f;
+		private float _changeDuration = 0.25f;
 		private List<ISlowMotion> _slowObjects = new();
 
 		public void TurnOn()
 		{
+			var sequence = DOTween.Sequence();
 			foreach(var slowObject in _slowObjects)
 			{
-				slowObject.SetTimeScale(_slowMoTimeScale);
+				sequence.Join(DOVirtual.Float(
+											_originalTimeScale,
+											_slowMoTimeScale,
+											_changeDuration,
+											(value) => slowObject.SetTimeScale(value))
+										.SetEase(Ease.OutSine));
 			}
 		}
 
 		public void TurnOff()
 		{
+			var sequence = DOTween.Sequence();
 			foreach (var slowObject in _slowObjects)
 			{
-				slowObject.SetTimeScale(_originalTimeScale);
+				sequence.Join(DOVirtual.Float(
+											_slowMoTimeScale,
+											_originalTimeScale,
+											_changeDuration,
+											(value) => slowObject.SetTimeScale(value))
+										.SetEase(Ease.OutSine));
 			}
 		}
 
