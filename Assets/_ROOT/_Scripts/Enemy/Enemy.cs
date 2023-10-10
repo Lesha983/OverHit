@@ -5,13 +5,11 @@ using ChillPlay.OverHit.Agent;
 using ChillPlay.OverHit.Service;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Enemy
 {
-	[RequireComponent(typeof(NavMeshAgent))]
 	public class Enemy : Pawn, IInteractable, ISlowMotion
 	{
 		[SF] private LayerMask obstaclesLayer;
@@ -24,8 +22,6 @@ namespace ChillPlay.OverHit.Enemy
 
 		public InteractableType Type => InteractableType.Enemy;
 
-		private NavMeshAgent _meshAgent;
-
 		private Transform _targetTransform;
 		private bool _hasTarget;
 
@@ -34,7 +30,6 @@ namespace ChillPlay.OverHit.Enemy
 		protected override void Awake()
 		{
 			base.Awake();
-			_meshAgent = GetComponent<NavMeshAgent>();
 			zone.Setup(targetLayer);
 			_slowMotionService.AddObject(this);
 		}

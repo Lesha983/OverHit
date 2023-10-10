@@ -8,9 +8,9 @@ using SF = UnityEngine.SerializeField;
 namespace ChillPlay.OverHit.Settings
 {
 	[CreateAssetMenu(menuName = ("OverHit/" + nameof(LevelCollection)), fileName = nameof(LevelCollection))]
-	public class LevelCollection : MonoBehaviour
+	public class LevelCollection : ScriptableObject
 	{
 		[field: SF]
-		public LevelPrefab[] LevelPrefabs { get; }
+		public LevelPrefab[] LevelPrefabs { get; private set; }
 	}
 }

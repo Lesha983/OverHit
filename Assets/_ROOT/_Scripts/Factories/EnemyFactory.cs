@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using ChillPlay.OverHit.Enemy;
-using ChillPlay.OverHit.Level;
 
 namespace ChillPlay.OverHit.Factory
 {

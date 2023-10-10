@@ -6,6 +6,7 @@ using ChillPlay.OverHit.Settings;
 using ChillPlay.OverHit.Weapons;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 using SF = UnityEngine.SerializeField;
@@ -56,6 +57,15 @@ namespace ChillPlay.OverHit.Agent
 			}
 
 			Die();
+		}
+
+		public IEnumerator MoveToRoutine(Vector3 targetPos)
+		{
+			var distance = (targetPos - transform.position).magnitude;
+			var duration = distance / speed;
+
+			var twin = transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
+			yield return twin.WaitForCompletion();
 		}
 
 		private IEnumerator Aiming(AimInfo aimInfo)

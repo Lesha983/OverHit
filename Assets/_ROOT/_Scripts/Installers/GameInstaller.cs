@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using ChillPlay.OverHit.Factory;
 using ChillPlay.OverHit.Service;
 using UnityEngine;
 using Zenject;
@@ -24,6 +25,10 @@ namespace ChillPlay.OverHit.Installer
 			BindService<GameSave>();
 
 			FindMonoService<CameraService>();
+
+			BindService<LevelFactory>();
+			BindService<PlayerFactory>();
+			BindService<EnemyFactory>();
 		}
 
 		private void FindMonoService<T>() where T : MonoBehaviour
