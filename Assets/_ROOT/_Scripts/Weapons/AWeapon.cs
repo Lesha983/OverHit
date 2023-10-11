@@ -12,9 +12,7 @@ namespace ChillPlay.OverHit.Weapons
 	{
 		public int Damage { get; }
 
-		public Action OnHit;
-
-		public abstract void StartShooting(LayerMask layer);
+		public abstract void StartShooting(LayerMask damageablelayer, Action callback = null);
 
 		public abstract void EndShooting();
 	}

@@ -31,7 +31,7 @@ namespace ChillPlay.OverHit.Level
 			openDoorSequence.Join(rightDoor.DOLocalMove(rightOpenLocalPos, moveDuration).SetEase(Ease.InSine));
 
 			yield return openDoorSequence.WaitForCompletion();
-			yield return player.MoveToRoutine(playerTargetMarker.position);
+			yield return player.AgentMoveToRoutine(playerTargetMarker.position);
 
 			var closeDoorSequence = DOTween.Sequence();
 			closeDoorSequence.Append(leftDoor.DOLocalMove(leftDoorStartPos, moveDuration).SetEase(Ease.InSine));

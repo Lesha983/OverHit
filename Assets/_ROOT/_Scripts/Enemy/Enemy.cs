@@ -20,17 +20,17 @@ namespace ChillPlay.OverHit.Enemy
 		[SF] private int damage;
 		[SF] private float hitDuration;
 
+		[Inject] private SlowMotionService _slowMotionService;
+
 		public InteractableType Type => InteractableType.Enemy;
 
 		private Transform _targetTransform;
 		private bool _hasTarget;
 
-		[Inject] private SlowMotionService _slowMotionService;
-
 		protected override void Awake()
 		{
 			base.Awake();
-			zone.Setup(targetLayer);
+			zone.Setup(damageableLayer);
 			_slowMotionService.AddObject(this);
 		}
 
@@ -77,49 +77,30 @@ namespace ChillPlay.OverHit.Enemy
 		private IEnumerator MoveToAttackRangeRoutine()
 		{
 			var distance = float.MaxValue;
+			_movement.MoveTo(_targetTransform.position);
+
 			while (distance > attackRange)
 			{
-				var direction = (transform.position - _targetTransform.position).normalized;
+				var direction = (_targetTransform.position - transform.position).normalized;
 				distance = (transform.position - _targetTransform.position).magnitude;
 				if (Physics.Raycast(transform.position,
 									direction,
 									out var obstacle,
 									attackRange,
 									obstaclesLayer))
-				{
-					Debug.Log("HAVE OBSTACLE");
-					distance += float.MaxValue;
-					DebugLine(direction, Color.red);
-				}
-
-				DebugLine(direction, Color.green);
-
-				//var targetPos = _targetTransform.position + direction * attackRange;
-				_meshAgent.SetDestination(_targetTransform.position);
-				//yield return MoveToRoutine(targetPos);
+					distance = float.MaxValue;
 
 				yield return null;
 			}
+
+			_movement.StopMovement();
 		}
 
 		private IEnumerator AttackRoutine()
 		{
-			weapon.StartShooting(targetLayer);
+			weapon.StartShooting(damageableLayer);
 			yield return new WaitForSeconds(hitDuration);
 			weapon.EndShooting();
-		}
-
-		private IEnumerator MoveToRoutine(Vector3 targetPos)
-		{
-			_meshAgent.SetDestination(targetPos);
-
-			while (_meshAgent.hasPath)
-				yield return null;
-		}
-
-		private void DebugLine(Vector3 direction, Color color)
-		{
-			Debug.DrawRay(transform.position, direction, color);
 		}
 
 		public void SetTimeScale(float timeScale)

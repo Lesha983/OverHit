@@ -12,32 +12,23 @@ namespace ChillPlay.OverHit.Weapons
 
 		protected Vector3 _direction;
 		protected int _damage;
-		protected LayerMask _layer;
+		protected LayerMask _damageablelayer;
 		protected bool _isShooting;
 
-		public Action OnHit;
+		protected Action _callback;
 
-		public void Shoot(Vector3 direction, int damage, LayerMask layer)
+		public void Shoot(Vector3 direction, int damage, LayerMask damageablelayer, Action callback = null)
 		{
 			_direction = direction;
 			_damage = damage;
-			_layer = layer;
+			_damageablelayer = damageablelayer;
 			_isShooting = true;
+			_callback = callback;
 		}
 
 		public void SetTimeScale(float timeScale)
 		{
 			Time.timeScale = timeScale;
 		}
-
-		//protected virtual void Hit(RaycastHit hit)
-		//{
-		//	if (!hit.collider.TryGetComponent<IDamageable>(out var damageable))
-		//		return;
-
-		//	damageable.TakeDamage(_damage);
-		//	Instantiate(effectPrefab, transform.position, Quaternion.identity);
-		//	OnHit?.Invoke();
-		//}
 	}
 }
