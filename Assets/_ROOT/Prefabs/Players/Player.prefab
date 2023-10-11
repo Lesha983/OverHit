@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5430964341128901833
 Transform:
   m_ObjectHideFlags: 0
@@ -453,11 +453,9 @@ MonoBehaviour:
   damageableLayer:
     serializedVersion: 2
     m_Bits: 0
-  heals: 100
-  weapon: {fileID: 1315033854897908484}
-  speed: 15
-  settings: {fileID: 11400000, guid: 64dff8dfc77b042f5b4c261ee85def84, type: 2}
   dashMarker: {fileID: 986052589011604276}
+  skin: {fileID: 0}
+  weapon: {fileID: 1315033854897908484}
 --- !u!114 &2337549173914330853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,7 +576,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd415cc0c2d054429a4fad14c48517ad, type: 2}
+  - {fileID: 2100000, guid: 7ad86bd5c86574e25b2c6b0c118ed549, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
