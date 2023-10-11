@@ -5,7 +5,6 @@ using ChillPlay.OverHit.Agent;
 using ChillPlay.OverHit.Factory;
 using ChillPlay.OverHit.Service;
 using ChillPlay.OverHit.Settings;
-using DG.Tweening;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,12 +17,9 @@ namespace ChillPlay.OverHit.Level
 	public class LevelPrefab : MonoBehaviour
 	{
 		[SF] private Transform playerRoot;
-		[SF] private Transform enemiesRoot;
-
-		[SF] private Transform[] meleeEnemiesSpawnMarkers;
-		[SF] private Transform[] rangedEnemiesSpawnMarkers;
-
 		[SF] private Transform playerSpawnMarker;
+
+		[SF] private Enemy.Enemy[] enemies;
 
 		[SF] private NavMeshSurface meshSurface;
 		[SF] private NavMeshData meshData;
@@ -33,14 +29,13 @@ namespace ChillPlay.OverHit.Level
 
 		[Inject] private GameState _state;
 		[Inject] private PlayerFactory _playerFactory;
-		[Inject] private EnemyFactory _enemyFactory;
 		[Inject] private EnemyCollection _enemyCollection;
+		[Inject] private SlowMotionService _slowMotionService;
 
 		public Action OnPlayerWin;
 		public Action OnPlayerLose;
 
 		private Player _player;
-		private List<Enemy.Enemy> _enemies = new();
 		private bool _levelCompleted;
 		private bool _playerIsWin;
 
@@ -51,11 +46,20 @@ namespace ChillPlay.OverHit.Level
 			StartCoroutine(nameof(CoreRoutine));
 		}
 
+		private void OnEnable()
+		{
+			foreach (var enemy in enemies)
+				enemy.OnDie += CheckEnemiesAlive;
+		}
+
 		private void OnDisable()
 		{
 			_player.OnDie -= PlayerIsDie;
-			foreach(var enemy in _enemies)
+			foreach (var enemy in enemies)
+			{
 				enemy.OnDie -= CheckEnemiesAlive;
+				_slowMotionService.RemoveObject(enemy);
+			}
 		}
 
 		private IEnumerator CoreRoutine()
@@ -75,27 +79,23 @@ namespace ChillPlay.OverHit.Level
 		private void SetupPawns()
 		{
 			_player = _playerFactory.Create(_state.CurrentPlayer, playerRoot);
+			_player.Setup(_state.CurrentPlayerSettings);
 			_player.transform.position = playerSpawnMarker.position;
 			_player.OnDie += PlayerIsDie;
 
-			foreach (var spawnMarker in meleeEnemiesSpawnMarkers)
-				CreateEnemy(_enemyCollection.MeleeEnemy, spawnMarker.position);
-
-			foreach (var spawnMarker in rangedEnemiesSpawnMarkers)
-				CreateEnemy(_enemyCollection.RangedEnemy, spawnMarker.position);
-		}
-
-		private void CreateEnemy(Enemy.Enemy enemyPrefab, Vector3 spawnPosition)
-		{
-			var enemy = _enemyFactory.Create(enemyPrefab, enemiesRoot);
-			enemy.transform.position = spawnPosition;
-			_enemies.Add(enemy);
-			enemy.OnDie += CheckEnemiesAlive;
+			foreach (var enemy in enemies)
+			{
+				var settings = enemy.AttackType == Utility.AttackType.Melee
+								? _enemyCollection.MeleeEnemySettings
+								: _enemyCollection.RangedEnemySettings;
+				enemy.Setup(settings);
+				_slowMotionService.AddObject(enemy);
+			}
 		}
 
 		private void CheckEnemiesAlive()
 		{
-			foreach(var enemy in _enemies)
+			foreach(var enemy in enemies)
 			{
 				if (enemy.IsAlive)
 					return;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ChillPlay.OverHit.Agent;
 using ChillPlay.OverHit.Level;
 using ChillPlay.OverHit.Settings;
+using ChillPlay.OverHit.Utility;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,9 @@ namespace ChillPlay.OverHit.Service
 		[Inject] private GameSave _save;
 
 		public LevelPrefab CurrentLevel => _levelCollection.LevelPrefabs[_save.LevelIndex];
-		public Player CurrentPlayer => _playerCollection.Players[_save.PlayerIndex];
+		public PlayerSettings CurrentPlayerSettings => _playerCollection.PlayerSettings[_save.PlayerIndex];
+		public Player CurrentPlayer => CurrentPlayerSettings.Attack == AttackType.Melee
+										? _playerCollection.MeleePlayerPrefab
+										: _playerCollection.RangedPlayerPrefab;
 	}
 }

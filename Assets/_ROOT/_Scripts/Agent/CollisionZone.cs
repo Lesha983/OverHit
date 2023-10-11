@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ChillPlay.OverHit.Agent
 {
-	[RequireComponent(typeof(Collider))]
+	[RequireComponent(typeof(SphereCollider))]
 	public class CollisionZone : MonoBehaviour
 	{
 		public Action<Transform> OnColliderInZone;
@@ -15,10 +15,12 @@ namespace ChillPlay.OverHit.Agent
 
 		public bool HasColliderInZone { get; private set; }
 
-		public void Setup(LayerMask targetLayer)
+		public void Setup(LayerMask targetLayer, float radius)
 		{
 			_targetLayer = targetLayer;
 			HasColliderInZone = false;
+			var collider = GetComponent<SphereCollider>();
+			collider.radius = radius;
 		}
 
 		private void OnTriggerEnter(Collider other)

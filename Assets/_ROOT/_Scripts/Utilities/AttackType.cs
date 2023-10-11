@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISlowMotion
+namespace ChillPlay.OverHit.Utility
 {
-	public void SetTimeScale(float timeScale);
+	public enum AttackType
+	{
+		Melee,
+		Ranged
+	}
 }

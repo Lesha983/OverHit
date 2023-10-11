@@ -7,7 +7,7 @@ using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Settings
 {
-	[CreateAssetMenu(menuName = ("OverHit/" + nameof(LevelCollection)), fileName = nameof(LevelCollection))]
+	[CreateAssetMenu(menuName = ("OverHit/Collections/" + nameof(LevelCollection)), fileName = nameof(LevelCollection))]
 	public class LevelCollection : ScriptableObject
 	{
 		[field: SF]

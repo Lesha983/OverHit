@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Service;
 using ChillPlay.OverHit.Settings;
+using ChillPlay.OverHit.Utility;
 using ChillPlay.OverHit.Weapons;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 
 using SF = UnityEngine.SerializeField;
@@ -21,19 +21,22 @@ namespace ChillPlay.OverHit.Agent
 			public bool TargetIsEnemy;
 		}
 
-		[SF] private float speed;
-		[SF] protected PlayerSettings settings;
 		[SF] protected DashMarker dashMarker;
+		[SF] protected Skin skin;
+		[SF] protected MeleeWeapon weapon;
 
 		[Inject] AimService _aimService;
 		[Inject] AimSettings _aimSettings;
 		[Inject] CameraService _cameraService;
 		[Inject] SlowMotionService _slowMotionService;
 
-		protected override void Awake()
+		protected PlayerSettings _settings;
+
+		public void Setup(PlayerSettings settings)
 		{
-			base.Awake();
-			StartCoroutine(nameof(CoreRoutine));
+			_settings = settings;
+			skin.Setup(_settings.Material);
+			_movement.UpdateSpeedValue(_settings.AgentSpeed);
 		}
 
 		public IEnumerator CoreRoutine()
@@ -70,7 +73,7 @@ namespace ChillPlay.OverHit.Agent
 			var targetIsEnemy = false;
 			var aiming = true;
 
-			dashMarker.Show(settings.MarkerMoveColor, settings.MarkerMoveSprite);
+			dashMarker.Show(_settings.MarkerMoveColor, _settings.MarkerMoveSprite);
 
 			Action endAimCallback = () => aiming = false;
 			_aimService.OnEndAim += endAimCallback;
@@ -89,11 +92,11 @@ namespace ChillPlay.OverHit.Agent
 						targetPos = ray.transform.position;
 						break;
 					case InteractableType.Wall:
-						dashMarker.UpdateView(settings.MarkerMoveColor, settings.MarkerMoveSprite);
+						dashMarker.UpdateView(_settings.MarkerMoveColor, _settings.MarkerMoveSprite);
 						targetPos = ray.point + ray.normal * _aimSettings.WallOffset;
 						break;
 					default:
-						dashMarker.UpdateView(settings.MarkerMoveColor, settings.MarkerMoveSprite);
+						dashMarker.UpdateView(_settings.MarkerMoveColor, _settings.MarkerMoveSprite);
 						break;
 				}
 
@@ -114,7 +117,7 @@ namespace ChillPlay.OverHit.Agent
 						_aimService.Direction,
 						out var ray,
 						_aimService.Force,
-						settings.Layer))
+						_settings.InteractableLayer))
 				return (InteractableType.None, ray);
 
 			if (!ray.collider.TryGetComponent<IInteractable>(out var interactable))
@@ -135,7 +138,7 @@ namespace ChillPlay.OverHit.Agent
 
 		protected virtual void AimToEnemy()
 		{
-			dashMarker.UpdateView(settings.MarkerAttackColor, settings.MarkerMeleeAttackSprite);
+			dashMarker.UpdateView(_settings.MarkerAttackColor, _settings.MarkerMeleeAttackSprite);
 		}
 
 		protected virtual IEnumerator MoveAndAttack(AimInfo aimInfo)
@@ -143,7 +146,7 @@ namespace ChillPlay.OverHit.Agent
 			var targetPos = aimInfo.TargetPosition;
 			var direction = (targetPos - transform.position).normalized;
 			var distance = (targetPos - transform.position).magnitude;
-			var duration = distance / speed;
+			var duration = distance / _settings.MoveToAttackSpeed;
 
 			transform.forward = direction;
 			var twin = transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);

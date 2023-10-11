@@ -26,6 +26,20 @@ namespace ChillPlay.OverHit.Weapons
 			_isShooting = true;
 		}
 
+		public override IEnumerator StartShortShooting(LayerMask damageablelayer, float duration, Action callback = null)
+		{
+			if (_isShooting)
+				yield break;
+
+			_projectile = Instantiate(_projectilePrefab, _spawnMarker);
+			_projectile.Shoot(transform.forward, projectileDamage, damageablelayer, callback);
+			_isShooting = true;
+
+			yield return new WaitForSeconds(duration);
+
+			EndShooting();
+		}
+
 		public override void EndShooting()
 		{
 			if (!_isShooting)
