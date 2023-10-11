@@ -9,14 +9,14 @@ namespace ChillPlay.OverHit.Agent
 {
 	public class RangedPlayer : Player
 	{
-		[SF] private AWeapon rangedWeapon;
+		[SF] private RangedWeapon rangedWeapon;
 		[SF] private CollisionZone collisionZone;
 		[SF] private GameObject meleeZoneSprite;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			collisionZone.Setup(damageableLayer);
+			collisionZone.Setup(damageableLayer, _settings.RadiusMeleeZone);
 		}
 
 		protected override void SetupBeforeAiming()
@@ -34,9 +34,9 @@ namespace ChillPlay.OverHit.Agent
 		protected override void AimToEnemy()
 		{
 			var markerSprite = collisionZone.HasColliderInZone
-								? settings.MarkerMeleeAttackSprite
-								: settings.MarkerRangedAttackSprite;
-			dashMarker.UpdateView(settings.MarkerAttackColor, markerSprite);
+								? _settings.MarkerMeleeAttackSprite
+								: _settings.MarkerRangedAttackSprite;
+			dashMarker.UpdateView(_settings.MarkerAttackColor, markerSprite);
 		}
 
 		protected override IEnumerator MoveAndAttack(AimInfo aimInfo)

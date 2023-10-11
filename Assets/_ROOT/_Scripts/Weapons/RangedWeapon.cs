@@ -34,12 +34,14 @@ namespace ChillPlay.OverHit.Weapons
 			StartCoroutine(nameof(SpawnProjectiles));
 		}
 
+		public override IEnumerator StartShortShooting(LayerMask damageablelayer, float duration, Action callback = null)
+		{
+			StartShooting(damageablelayer, callback);
+			yield break;
+		}
+
 		public override void EndShooting()
 		{
-			foreach (var projectile in _projectiles)
-			{
-				_slowMotionService.RemoveObject(projectile);
-			}
 		}
 
 		private IEnumerator SpawnProjectiles()
@@ -50,6 +52,7 @@ namespace ChillPlay.OverHit.Weapons
 				var projectile = Instantiate(projectilePrefab, spawnMarker.position, Quaternion.identity);
 				_projectiles.Add(projectile);
 				_slowMotionService.AddObject(projectile);
+				_callback += ()=> _slowMotionService.RemoveObject(projectile);
 				var direction = Quaternion.Euler(0f, _randomOffset, 0f) * transform.forward;
 				projectile.Shoot(direction, projectileDamage, _damageablelayer, _callback);
 				yield return delay;

@@ -2,36 +2,40 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Agent;
-using ChillPlay.OverHit.Service;
+using ChillPlay.OverHit.Settings;
+using ChillPlay.OverHit.Utility;
+using ChillPlay.OverHit.Weapons;
 using DG.Tweening;
 using UnityEngine;
-using Zenject;
+
 using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Enemy
 {
 	public class Enemy : Pawn, IInteractable, ISlowMotion
 	{
+		[SF] private AttackType attackType;
 		[SF] private LayerMask obstaclesLayer;
 		[SF] private CollisionZone zone;
-		[SF] private float attackRange;
-		[SF] private float reloadTime;
-		[SF] private float angularSpeed;
-		[SF] private int damage;
-		[SF] private float hitDuration;
-
-		[Inject] private SlowMotionService _slowMotionService;
+		[SF] private AWeapon weapon;
 
 		public InteractableType Type => InteractableType.Enemy;
+		public AttackType AttackType => attackType;
 
+		private EnemySettings _settings;
 		private Transform _targetTransform;
 		private bool _hasTarget;
 
-		protected override void Awake()
+		public void Setup(EnemySettings settings)
 		{
-			base.Awake();
-			zone.Setup(damageableLayer);
-			_slowMotionService.AddObject(this);
+			_settings = settings;
+			zone.Setup(damageableLayer, _settings.DetectRadius);
+			_movement.UpdateSpeedValue(_settings.AgentSpeed);
+		}
+
+		public void SetTimeScale(float timeScale)
+		{
+			Time.timeScale = timeScale;
 		}
 
 		private void OnEnable()
@@ -56,12 +60,12 @@ namespace ChillPlay.OverHit.Enemy
 
 		private IEnumerator CoreRoutine()
 		{
-			var reload = new WaitForSeconds(reloadTime);
+			var reload = new WaitForSeconds(_settings.ReloadTime);
 
 			while (IsAlive)
 			{
 				var angle = Vector3.Angle(transform.forward, _targetTransform.forward);
-				var rotateDuration = angle / angularSpeed;
+				var rotateDuration = angle / _settings.AngularSpeed;
 				var rotateTween = transform.DOLookAt(_targetTransform.position, rotateDuration);
 				yield return rotateTween.WaitForCompletion();
 
@@ -79,14 +83,14 @@ namespace ChillPlay.OverHit.Enemy
 			var distance = float.MaxValue;
 			_movement.MoveTo(_targetTransform.position);
 
-			while (distance > attackRange)
+			while (distance > _settings.AttackRange)
 			{
 				var direction = (_targetTransform.position - transform.position).normalized;
 				distance = (transform.position - _targetTransform.position).magnitude;
 				if (Physics.Raycast(transform.position,
 									direction,
 									out var obstacle,
-									attackRange,
+									_settings.AttackRange,
 									obstaclesLayer))
 					distance = float.MaxValue;
 
@@ -98,14 +102,7 @@ namespace ChillPlay.OverHit.Enemy
 
 		private IEnumerator AttackRoutine()
 		{
-			weapon.StartShooting(damageableLayer);
-			yield return new WaitForSeconds(hitDuration);
-			weapon.EndShooting();
-		}
-
-		public void SetTimeScale(float timeScale)
-		{
-			Time.timeScale = timeScale;
+			yield return weapon.StartShortShooting(damageableLayer, _settings.HitDuration);
 		}
 	}
 }

@@ -6,7 +6,7 @@ using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Settings
 {
-	[CreateAssetMenu(menuName = ("OverHit/" + nameof(AimSettings)), fileName = nameof(AimSettings))]
+	[CreateAssetMenu(menuName = ("OverHit/Settings/" + nameof(AimSettings)), fileName = nameof(AimSettings))]
 	public class AimSettings : ScriptableObject
 	{
 		[field: SF]

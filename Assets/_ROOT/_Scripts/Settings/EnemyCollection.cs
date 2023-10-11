@@ -8,13 +8,13 @@ using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Settings
 {
-	[CreateAssetMenu(menuName = ("OverHit/" + nameof(EnemyCollection)), fileName = nameof(EnemyCollection))]
+	[CreateAssetMenu(menuName = ("OverHit/Collections/" + nameof(EnemyCollection)), fileName = nameof(EnemyCollection))]
 	public class EnemyCollection : ScriptableObject
 	{
 		[field: SF]
-		public Enemy.Enemy MeleeEnemy { get; private set; }
+		public EnemySettings MeleeEnemySettings { get; private set; }
 
 		[field: SF]
-		public Enemy.Enemy RangedEnemy { get; private set; }
+		public EnemySettings RangedEnemySettings { get; private set; }
 	}
 }
