@@ -10,10 +10,14 @@ namespace ChillPlay.OverHit.Agent
 	[RequireComponent(typeof(NavMeshAgent))]
 	public class PawnMovement : MonoBehaviour
 	{
-		[SF] private float speed;
-
 		private NavMeshAgent _agent;
 		private bool _isMoving;
+
+		public void Setup(float speedValue)
+		{
+			_agent = GetComponent<NavMeshAgent>();
+			_agent.speed = speedValue;
+		}
 
 		public void MoveTo(Vector3 destination)
 		{
@@ -47,18 +51,12 @@ namespace ChillPlay.OverHit.Agent
 			_agent.speed = value;
 		}
 
-		private void Awake()
-		{
-			_agent = GetComponent<NavMeshAgent>();
-			_agent.speed = speed;
-		}
-
 		private bool ReachesDestination()
 		{
 			if (!_isMoving)
 				return false;
 
-			if (_agent.hasPath || _agent.remainingDistance > _agent.stoppingDistance)
+			if (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance)
 				return true;
 
 			return false;

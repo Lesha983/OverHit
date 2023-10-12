@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using ChillPlay.OverHit.Weapons;
 using ChillPlay.OverHit.Utility;
 using UnityEngine;
 
@@ -13,28 +11,25 @@ namespace ChillPlay.OverHit.Agent
 	public class Pawn : MonoBehaviour, IDamageable
 	{
 		[SF] protected LayerMask damageableLayer;
-		//[SF] protected int heals;
-		//[SF] protected AWeapon weapon;
 
 		public Action OnDie;
 
-		private int _currentHeals;
+		protected int _currentHealth;
 		protected PawnMovement _movement;
 
-		public bool IsAlive => _currentHeals > 0;
-		public int CurrentHeals => _currentHeals;
+		public bool IsAlive => _currentHealth > 0;
+		public int CurrentHealth => _currentHealth;
 
 		public void TakeDamage(int damage)
 		{
-			_currentHeals -= damage;
+			_currentHealth -= damage;
+			Debug.Log($"TakeDamage: damage = {damage}; currentHealth = {_currentHealth}");
+
+			if (!IsAlive)
+				Die();
 		}
 
-		protected virtual void Awake()
-		{
-			_movement = GetComponent<PawnMovement>();
-		}
-
-		protected void Die()
+		protected virtual void Die()
 		{
 			Debug.Log($"gameObject: {name}; OnDie");
 			OnDie?.Invoke();

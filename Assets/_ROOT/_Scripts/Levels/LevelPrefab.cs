@@ -29,7 +29,7 @@ namespace ChillPlay.OverHit.Level
 
 		[Inject] private GameState _state;
 		[Inject] private PlayerFactory _playerFactory;
-		[Inject] private EnemyCollection _enemyCollection;
+		//[Inject] private EnemyCollection _enemyCollection;
 		[Inject] private SlowMotionService _slowMotionService;
 
 		public Action OnPlayerWin;
@@ -70,11 +70,15 @@ namespace ChillPlay.OverHit.Level
 			yield return new WaitUntil(() => _levelCompleted);
 			if (_playerIsWin)
 			{
+				StopCoroutine(_player.CoreRoutine());
 				yield return endLift.InteractionRoutine(_player);
 				OnPlayerWin?.Invoke();
 			}
 			else
 				OnPlayerLose?.Invoke();
+
+			OnLevelCompleted?.Invoke();
+			_state.UpdateLevel();
 		}
 
 		private void SetupPawns()
@@ -86,10 +90,10 @@ namespace ChillPlay.OverHit.Level
 
 			foreach (var enemy in enemies)
 			{
-				var settings = enemy.AttackType == Utility.AttackType.Melee
-								? _enemyCollection.MeleeEnemySettings
-								: _enemyCollection.RangedEnemySettings;
-				enemy.Setup(settings);
+				//var settings = enemy.AttackType == Utility.AttackType.Melee
+				//				? _enemyCollection.MeleeEnemySettings
+				//				: _enemyCollection.RangedEnemySettings;
+				enemy.Setup();
 				_slowMotionService.AddObject(enemy);
 			}
 		}

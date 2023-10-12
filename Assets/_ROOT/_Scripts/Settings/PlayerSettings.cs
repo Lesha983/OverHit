@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Utility;
+using NaughtyAttributes;
 using UnityEngine;
 
 using SF = UnityEngine.SerializeField;
@@ -53,7 +54,13 @@ namespace ChillPlay.OverHit.Settings
 		[field: SF]
 		public Sprite MarkerMeleeAttackSprite { get; private set; }
 
-		[field: SF]
+		[field: Header("Ranged Settings")]
+		[field: SF, ShowIf("isRanged")]
+		public int RangedProjectileDamage { get; private set; }
+
+		[field: SF, ShowIf("isRanged")]
 		public Sprite MarkerRangedAttackSprite { get; private set; }
+
+		private bool isRanged => Attack == AttackType.Ranged;
 	}
 }

@@ -221,17 +221,21 @@ MonoBehaviour:
   damageableLayer:
     serializedVersion: 2
     m_Bits: 512
-  heals: 20
-  weapon: {fileID: 7568992487865919828}
+  attackType: 1
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 256
   zone: {fileID: 4906605430113361}
+  weapon: {fileID: 7568992487865919828}
+  collider: {fileID: 2266702474034493212}
+  health: 30
   attackRange: 10
-  reloadTime: 2
-  angularSpeed: 60
+  detectRadius: 5
   damage: 5
-  hitDuration: 0
+  reloadTime: 2
+  hitDuration: 1
+  angularSpeed: 60
+  agentSpeed: 5
 --- !u!195 &3608598949795363625
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -266,7 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee229cd15fbc4fe1a2ff019ef7da101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!1 &7455509661945471074
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,12 +11,12 @@ namespace ChillPlay.OverHit.Weapons
 	{
 		[SF] private Transform _spawnMarker;
 		[SF] private ProjectilePrefab _projectilePrefab;
-		[SF] private int projectileDamage;
+		//[SF] private int projectileDamage;
 
 		private ProjectilePrefab _projectile;
 		private bool _isShooting;
 
-		public override void StartShooting(LayerMask damageablelayer, Action callback = null)
+		public override void StartShooting(LayerMask damageablelayer, int projectileDamage, Action callback = null)
 		{
 			if (_isShooting)
 				return;
@@ -26,7 +26,7 @@ namespace ChillPlay.OverHit.Weapons
 			_isShooting = true;
 		}
 
-		public override IEnumerator StartShortShooting(LayerMask damageablelayer, float duration, Action callback = null)
+		public override IEnumerator StartShortShooting(LayerMask damageablelayer, int projectileDamage, float duration, Action callback = null)
 		{
 			if (_isShooting)
 				yield break;

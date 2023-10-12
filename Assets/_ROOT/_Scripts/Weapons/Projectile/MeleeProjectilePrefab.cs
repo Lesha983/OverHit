@@ -12,6 +12,9 @@ namespace ChillPlay.OverHit.Weapons
 			if (!collision.collider.TryGetComponent<IDamageable>(out var damageable))
 				return;
 
+			if ((_damageablelayer.value & 1 << collision.gameObject.layer) == 0)
+				return;
+
 			damageable.TakeDamage(_damage);
 			Instantiate(effectPrefab, collision.contacts[0].point, Quaternion.identity);
 			_callback?.Invoke();

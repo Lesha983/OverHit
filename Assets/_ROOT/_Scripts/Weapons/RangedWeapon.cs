@@ -20,6 +20,7 @@ namespace ChillPlay.OverHit.Weapons
 		[SF] private int directionOffset;
 
 		private LayerMask _damageablelayer;
+		private int _projectileDamage;
 		private Action _callback;
 		private List<ProjectilePrefab> _projectiles = new();
 
@@ -27,16 +28,17 @@ namespace ChillPlay.OverHit.Weapons
 
 		[Inject] private SlowMotionService _slowMotionService;
 
-		public override void StartShooting(LayerMask damageablelayer, Action callback = null)
+		public override void StartShooting(LayerMask damageablelayer, int projectileDamage, Action callback = null)
 		{
 			_damageablelayer = damageablelayer;
+			_projectileDamage = projectileDamage;
 			_callback = callback;
 			StartCoroutine(nameof(SpawnProjectiles));
 		}
 
-		public override IEnumerator StartShortShooting(LayerMask damageablelayer, float duration, Action callback = null)
+		public override IEnumerator StartShortShooting(LayerMask damageablelayer, int projectileDamage, float duration, Action callback = null)
 		{
-			StartShooting(damageablelayer, callback);
+			StartShooting(damageablelayer, projectileDamage, callback);
 			yield break;
 		}
 
@@ -54,7 +56,7 @@ namespace ChillPlay.OverHit.Weapons
 				_slowMotionService.AddObject(projectile);
 				_callback += ()=> _slowMotionService.RemoveObject(projectile);
 				var direction = Quaternion.Euler(0f, _randomOffset, 0f) * transform.forward;
-				projectile.Shoot(direction, projectileDamage, _damageablelayer, _callback);
+				projectile.Shoot(direction, _projectileDamage, _damageablelayer, _callback);
 				yield return delay;
 			}
 		}

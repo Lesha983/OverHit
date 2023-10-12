@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ChillPlay.OverHit.Settings;
 using ChillPlay.OverHit.Weapons;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ namespace ChillPlay.OverHit.Agent
 		[SF] private CollisionZone collisionZone;
 		[SF] private GameObject meleeZoneSprite;
 
-		protected override void Awake()
+		public override void Setup(PlayerSettings settings)
 		{
-			base.Awake();
+			base.Setup(settings);
 			collisionZone.Setup(damageableLayer, _settings.RadiusMeleeZone);
 		}
 
@@ -56,7 +57,7 @@ namespace ChillPlay.OverHit.Agent
 		{
 			var direction = (targetPos - transform.position).normalized;
 			transform.forward = direction;
-			rangedWeapon.StartShooting(damageableLayer);
+			rangedWeapon.StartShooting(damageableLayer, _settings.RangedProjectileDamage);
 		}
 
 		private void ShowMeleeZone()

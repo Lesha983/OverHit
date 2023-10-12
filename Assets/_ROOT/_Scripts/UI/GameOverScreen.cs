@@ -18,6 +18,8 @@ namespace ChillPlay.OverHit.UI
 
 		[Inject] private LevelRoot _levelRoot;
 
+		private LevelPrefab _currentLevel;
+
 		private void Awake()
 		{
 			background.gameObject.SetActive(false);
@@ -27,7 +29,10 @@ namespace ChillPlay.OverHit.UI
 
 		private void OnEnable()
 		{
-			_levelRoot.CurrebtLevel.OnLevelCompleted += Show;
+			if (_levelRoot.CurrentLevel == null)
+				_levelRoot.OnLevelCreated += OnLevelCreated;
+			else
+				OnLevelCreated(_levelRoot.CurrentLevel);
 
 			home.onClick.AddListener(OnHome);
 			play.onClick.AddListener(OnPlay);
@@ -35,10 +40,19 @@ namespace ChillPlay.OverHit.UI
 
 		private void OnDisable()
 		{
-			_levelRoot.CurrebtLevel.OnLevelCompleted -= Show;
+			if (_currentLevel != null)
+				_currentLevel.OnLevelCompleted -= Show;
+			_levelRoot.OnLevelCreated -= OnLevelCreated;
 
 			home.onClick.RemoveListener(OnHome);
 			play.onClick.RemoveListener(OnPlay);
+		}
+
+		private void OnLevelCreated(LevelPrefab levelPrefab)
+		{
+			Debug.Log("OnLevelCreated");
+			_currentLevel = levelPrefab;
+			_currentLevel.OnLevelCompleted += Show;
 		}
 
 		private void Show()

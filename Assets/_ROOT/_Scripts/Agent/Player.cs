@@ -31,12 +31,18 @@ namespace ChillPlay.OverHit.Agent
 		[Inject] SlowMotionService _slowMotionService;
 
 		protected PlayerSettings _settings;
+		protected bool _aiming;
+		protected bool _agentIsMoving;
 
-		public void Setup(PlayerSettings settings)
+		public virtual void Setup(PlayerSettings settings)
 		{
+			_movement = GetComponent<PawnMovement>();
+
 			_settings = settings;
+			_currentHealth = _settings.Health;
 			skin.Setup(_settings.Material);
-			_movement.UpdateSpeedValue(_settings.AgentSpeed);
+			_movement.Setup(_settings.AgentSpeed);
+			_cameraService.ChangeTarget(transform);
 		}
 
 		public IEnumerator CoreRoutine()
@@ -58,27 +64,31 @@ namespace ChillPlay.OverHit.Agent
 				SetupAfterAiming();
 				yield return MoveAndAttack(aimInfo);
 			}
-
-			Die();
 		}
 
 		public IEnumerator AgentMoveToRoutine(Vector3 destination)
 		{
+			_agentIsMoving = true;
+			_aiming = false;
 			yield return _movement.MoveToRoutine(destination);
+			_agentIsMoving = false;
 		}
 
 		private IEnumerator Aiming(AimInfo aimInfo)
 		{
+			if (_agentIsMoving)
+				yield break;
+
 			var targetPos = new Vector3();
 			var targetIsEnemy = false;
-			var aiming = true;
+			_aiming = true;
 
 			dashMarker.Show(_settings.MarkerMoveColor, _settings.MarkerMoveSprite);
 
-			Action endAimCallback = () => aiming = false;
+			Action endAimCallback = () => _aiming = false;
 			_aimService.OnEndAim += endAimCallback;
 
-			while (aiming)
+			while (_aiming)
 			{
 				targetIsEnemy = false;
 				targetPos = transform.position + _aimService.Direction * _aimService.Force;
@@ -126,6 +136,12 @@ namespace ChillPlay.OverHit.Agent
 			return (interactable.Type, ray);
 		}
 
+		protected override void Die()
+		{
+			base.Die();
+			StopCoroutine(nameof(CoreRoutine));
+		}
+
 		protected virtual void SetupBeforeAiming()
 		{
 			_cameraService.ChangeTarget(dashMarker.SpriteTransform);
@@ -150,7 +166,7 @@ namespace ChillPlay.OverHit.Agent
 
 			transform.forward = direction;
 			var twin = transform.DOMove(targetPos, duration).SetEase(Ease.OutQuad);
-			weapon.StartShooting(damageableLayer, () => twin.Kill());
+			weapon.StartShooting(damageableLayer, _settings.Damage, () => twin.Kill());
 
 			yield return twin.WaitForCompletion();
 

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee1d3c61ff654c18a91df10491ce7f4, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 0
+  <Health>k__BackingField: 100
   <InteractableLayer>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   <Attack>k__BackingField: 0
-  <Damage>k__BackingField: 0
-  <RadiusMeleeZone>k__BackingField: 0
-  <AgentSpeed>k__BackingField: 0
-  <MoveToAttackSpeed>k__BackingField: 0
+  <Damage>k__BackingField: 15
+  <RadiusMeleeZone>k__BackingField: 3
+  <AgentSpeed>k__BackingField: 8
+  <MoveToAttackSpeed>k__BackingField: 15
   <Material>k__BackingField: {fileID: 2100000, guid: dd415cc0c2d054429a4fad14c48517ad, type: 2}
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 3ad459dab9660453fa92fa92c7e7367d, type: 3}
   <MarkerMoveColor>k__BackingField: {r: 0.19971518, g: 0.2897828, b: 0.8301887, a: 1}
   <MarkerAttackColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
   <MarkerMoveSprite>k__BackingField: {fileID: 21300000, guid: 61fb9ecce04358246901dadbdfbd2230, type: 3}

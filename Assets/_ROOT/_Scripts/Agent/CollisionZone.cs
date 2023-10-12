@@ -12,6 +12,7 @@ namespace ChillPlay.OverHit.Agent
 		public Action<Transform> OnColliderOutZone;
 
 		private LayerMask _targetLayer;
+		private SphereCollider _collider;
 
 		public bool HasColliderInZone { get; private set; }
 
@@ -19,8 +20,9 @@ namespace ChillPlay.OverHit.Agent
 		{
 			_targetLayer = targetLayer;
 			HasColliderInZone = false;
-			var collider = GetComponent<SphereCollider>();
-			collider.radius = radius;
+
+			_collider = GetComponent<SphereCollider>();
+			_collider.radius = radius;
 		}
 
 		private void OnTriggerEnter(Collider other)

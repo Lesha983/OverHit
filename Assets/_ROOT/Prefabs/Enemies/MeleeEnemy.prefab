@@ -99,7 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnMarker: {fileID: 2438392686520978671}
   _projectilePrefab: {fileID: 9023755709831346146, guid: 05944f7aea16247a2b5b1aa3af38f17f, type: 3}
-  projectileDamage: 15
 --- !u!1 &4373084177097732166
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,20 +223,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e7fc17bf1ab4756807ee23f3787258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
+  damageableLayer:
     serializedVersion: 2
     m_Bits: 512
-  heals: 30
-  weapon: {fileID: 8134986410421669609}
+  attackType: 0
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 256
   zone: {fileID: 499087247378937042}
-  attackRange: 1.7
-  reloadTime: 3
-  angularSpeed: 60
-  damage: 15
-  hitDuration: 0.25
+  weapon: {fileID: 8134986410421669609}
+  collider: {fileID: 1964423124101046927}
+  health: 20
+  attackRange: 2
+  detectRadius: 5
+  damage: 10
+  reloadTime: 2
+  hitDuration: 0.3
+  angularSpeed: 25
+  agentSpeed: 4
 --- !u!195 &8984110400716878479
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -272,7 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee229cd15fbc4fe1a2ff019ef7da101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!1 &4707602717538313041
 GameObject:
   m_ObjectHideFlags: 0

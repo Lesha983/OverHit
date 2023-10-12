@@ -12,5 +12,13 @@ namespace ChillPlay.OverHit.Settings
 	{
 		[field: SF]
 		public LevelPrefab[] LevelPrefabs { get; private set; }
+
+		public LevelPrefab GetLevelPrefab(int index)
+		{
+			if (index >= LevelPrefabs.Length)
+				index %= LevelPrefabs.Length;
+
+			return LevelPrefabs[index];
+		}
 	}
 }

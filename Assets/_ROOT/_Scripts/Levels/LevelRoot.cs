@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ChillPlay.OverHit.Factory;
@@ -12,11 +13,14 @@ namespace ChillPlay.OverHit.Level
 		[Inject] private LevelFactory _levelFactory;
 		[Inject] private GameState _state;
 
-		public LevelPrefab CurrebtLevel { get; private set; }
+		public LevelPrefab CurrentLevel { get; private set; }
+
+		public Action<LevelPrefab> OnLevelCreated;
 
 		private void Awake()
 		{
-			CurrebtLevel = _levelFactory.Create(_state.CurrentLevel, transform);
+			CurrentLevel = _levelFactory.Create(_state.CurrentLevel, transform);
+			OnLevelCreated?.Invoke(CurrentLevel);
 		}
 	}
 }

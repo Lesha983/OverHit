@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee1d3c61ff654c18a91df10491ce7f4, type: 3}
   m_Name: PlayerSettings 1
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 0
+  <Health>k__BackingField: 100
   <InteractableLayer>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
-  <Attack>k__BackingField: 0
-  <Damage>k__BackingField: 0
-  <RadiusMeleeZone>k__BackingField: 0
-  <AgentSpeed>k__BackingField: 0
-  <MoveToAttackSpeed>k__BackingField: 0
+    m_Bits: 384
+  <Attack>k__BackingField: 1
+  <Damage>k__BackingField: 15
+  <RadiusMeleeZone>k__BackingField: 4
+  <AgentSpeed>k__BackingField: 8
+  <MoveToAttackSpeed>k__BackingField: 15
   <Material>k__BackingField: {fileID: 2100000, guid: 7ad86bd5c86574e25b2c6b0c118ed549, type: 2}
-  <Icon>k__BackingField: {fileID: 0}
-  <MarkerMoveColor>k__BackingField: {r: 0.19971518, g: 0.2897828, b: 0.8301887, a: 1}
-  <MarkerAttackColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
+  <Icon>k__BackingField: {fileID: 21300000, guid: c7cbf115efe5c45fd9e2019fc06c6694, type: 3}
+  <MarkerMoveColor>k__BackingField: {r: 0.08085617, g: 0.10030258, b: 0.21698111, a: 1}
+  <MarkerAttackColor>k__BackingField: {r: 0.5943396, g: 0.019624433, b: 0.019624433, a: 1}
   <MarkerMoveSprite>k__BackingField: {fileID: 21300000, guid: 61fb9ecce04358246901dadbdfbd2230, type: 3}
   <MarkerMeleeAttackSprite>k__BackingField: {fileID: 21300000, guid: 7e30b45d0fd13614e97a8cf6dbe6c2b1, type: 3}
+  <RangedProjectileDamage>k__BackingField: 5
   <MarkerRangedAttackSprite>k__BackingField: {fileID: 21300000, guid: db6c53a51f4ff0243919f780d898a0c2, type: 3}
