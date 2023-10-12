@@ -23,7 +23,6 @@ namespace ChillPlay.OverHit.Agent
 		public void TakeDamage(int damage)
 		{
 			_currentHealth -= damage;
-			Debug.Log($"TakeDamage: damage = {damage}; currentHealth = {_currentHealth}");
 
 			if (!IsAlive)
 				Die();
@@ -31,7 +30,6 @@ namespace ChillPlay.OverHit.Agent
 
 		protected virtual void Die()
 		{
-			Debug.Log($"gameObject: {name}; OnDie");
 			OnDie?.Invoke();
 		}
 	}

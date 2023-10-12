@@ -50,7 +50,6 @@ namespace ChillPlay.OverHit.UI
 
 		private void OnLevelCreated(LevelPrefab levelPrefab)
 		{
-			Debug.Log("OnLevelCreated");
 			_currentLevel = levelPrefab;
 			_currentLevel.OnLevelCompleted += Show;
 		}

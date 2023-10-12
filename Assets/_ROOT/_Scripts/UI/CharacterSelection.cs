@@ -15,14 +15,9 @@ namespace ChillPlay.OverHit.UI
 	{
 		[SF] private Transform parent;
 		[SF] private AgentAvatar avatarPrefab;
-		//[SF] private Image firstBG;
-		//[SF] private Image secondBG;
-		//[SF] private Button firstPlayer;
-		//[SF] private Button secondPlayer;
 		[SF] private Button startLevel;
 
 		[SF] private MeshRenderer mesh;
-		//[SF] private Color color;
 
 		[Inject] private PlayerCollection _playerCollection;
 		[Inject] private GameState _gameState;
@@ -42,50 +37,15 @@ namespace ChillPlay.OverHit.UI
 			}
 		}
 
-		//private void Awake()
-		//{
-		//	Choose(0);
-		//	SetViewFirst();
-		//}
-
 		private void OnEnable()
 		{
-			//firstPlayer.onClick.AddListener(SetViewFirst);
-			//secondPlayer.onClick.AddListener(SetViewSecond);
-
-			//firstPlayer.onClick.AddListener(() => Choose(0));
-			//secondPlayer.onClick.AddListener(() => Choose(1));
 			startLevel.onClick.AddListener(StartLevel);
 		}
 
 		private void OnDisable()
 		{
-			//firstPlayer.onClick.RemoveAllListeners();
-			//secondPlayer.onClick.RemoveAllListeners();
 			startLevel.onClick.RemoveListener(StartLevel);
 		}
-
-		//private void Choose(int index)
-		//{
-		//	_gameState.UpdatePlayer(index);
-		//	mesh.material = _playerCollection.PlayerSettings[index].Material;
-		//}
-
-		//private void SetViewFirst()
-		//{
-		//	color.a = 1f;
-		//	firstBG.color = color;
-		//	color.a = 0f;
-		//	secondBG.color = color;
-		//}
-
-		//private void SetViewSecond()
-		//{
-		//	color.a = 1f;
-		//	secondBG.color = color;
-		//	color.a = 0f;
-		//	firstBG.color = color;
-		//}
 
 		private void SelectAgent(PlayerSettings playerSettings)
 		{
