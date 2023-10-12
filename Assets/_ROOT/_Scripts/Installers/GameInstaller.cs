@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using ChillPlay.OverHit.Factory;
+using ChillPlay.OverHit.Level;
 using ChillPlay.OverHit.Service;
 using UnityEngine;
 using Zenject;
@@ -25,6 +26,7 @@ namespace ChillPlay.OverHit.Installer
 			BindService<GameSave>();
 
 			FindMonoService<CameraService>();
+			FindMonoService<LevelRoot>();
 
 			BindService<LevelFactory>();
 			BindService<PlayerFactory>();
