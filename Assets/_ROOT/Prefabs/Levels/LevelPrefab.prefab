@@ -2334,8 +2334,8 @@ GameObject:
   - component: {fileID: 2689624253235169370}
   - component: {fileID: 6287785869762487417}
   - component: {fileID: 593471029434134212}
-  - component: {fileID: 537934268572423910}
   - component: {fileID: 1541890895178070015}
+  - component: {fileID: 7923161391883367965}
   m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
@@ -2429,18 +2429,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &537934268572423910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7197101508847042469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88f7e58d30f64e459cd997214467320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!208 &1541890895178070015
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2457,6 +2445,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7923161391883367965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197101508847042469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f7e58d30f64e459cd997214467320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7203397251440325079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,12 +2509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 4922805196297862190}
-  enemiesRoot: {fileID: 4966159334183344146}
-  meleeEnemiesSpawnMarkers:
-  - {fileID: 261803336648702835}
-  rangedEnemiesSpawnMarkers:
-  - {fileID: 457767461283943848}
   playerSpawnMarker: {fileID: 8618728552224307561}
+  enemies: []
   meshSurface: {fileID: 5645023224710920818}
   meshData: {fileID: 23800000, guid: 83929a99fb9404503b8bab9dab2cc908, type: 2}
   startLift: {fileID: 7933403433048951655}

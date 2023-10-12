@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69a5f82f3fa24eeeaf7ec5910ede597, type: 3}
   m_Name: PlayerCollection
   m_EditorClassIdentifier: 
-  <Players>k__BackingField:
-  - {fileID: 5324434693900979203, guid: 021fe2d3346784a24ba10ed5c26d7545, type: 3}
-  - {fileID: 3223385529495248731, guid: 7f48a4cccbbae405484dcf77ffd16dde, type: 3}
+  <PlayerSettings>k__BackingField:
+  - {fileID: 11400000, guid: 64dff8dfc77b042f5b4c261ee85def84, type: 2}
+  - {fileID: 11400000, guid: 6a5c12a544d1241c2b410b92dfa17047, type: 2}
+  <MeleePlayerPrefab>k__BackingField: {fileID: 0}
+  <RangedPlayerPrefab>k__BackingField: {fileID: 0}

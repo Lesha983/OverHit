@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using ChillPlay.OverHit.Factory;
-using ChillPlay.OverHit.Level;
 using ChillPlay.OverHit.Service;
 using UnityEngine;
 using Zenject;
@@ -11,7 +8,7 @@ using SF = UnityEngine.SerializeField;
 
 namespace ChillPlay.OverHit.Installer
 {
-	public class GameInstaller : MonoInstaller
+	public class MenuInstaller : MonoInstaller
 	{
 		[SF] ScriptableObject[] _settingsObjects;
 
@@ -20,22 +17,7 @@ namespace ChillPlay.OverHit.Installer
 			foreach (var so in _settingsObjects)
 				BindSettings(so);
 
-			BindService<AimService>();
-			BindService<SlowMotionService>();
-			BindService<GameState>();
 			BindService<GameSave>();
-
-			FindMonoService<CameraService>();
-			FindMonoService<LevelRoot>();
-
-			BindService<LevelFactory>();
-			BindService<PlayerFactory>();
-			BindService<EnemyFactory>();
-		}
-
-		private void FindMonoService<T>() where T : MonoBehaviour
-		{
-			Container.BindInterfacesAndSelfTo<T>().FromComponentInHierarchy().AsSingle();
 		}
 
 		private void BindSettings(ScriptableObject so)
@@ -45,6 +27,7 @@ namespace ChillPlay.OverHit.Installer
 				.FromInstance(so)
 				.AsSingle();
 		}
+
 
 		public void BindService<T>() where T : class
 		{

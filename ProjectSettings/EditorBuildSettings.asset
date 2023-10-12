@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/~External/Scenes/Loader.unity
     guid: c9031742dfdf0024cb3c02a47eb26c5d
   - enabled: 1
-    path: Assets/~External/Scenes/Game.unity
-    guid: 546be327819973c4cad87c3c6bf7cd1c
+    path: Assets/_ROOT/Scenes/Menu.unity
+    guid: 29a31172eb990424ba3f0a06b49f6edb
   - enabled: 1
-    path: Assets/~External/_Levels/Level_01/Level_01.unity
-    guid: cf1a25733502f144c87a5b6b9fc9ff7f
+    path: Assets/_ROOT/Scenes/Main.unity
+    guid: bf9a76fad77fc4ab09be362bc434ee59
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 021f156c95b6a09448e87e2364f6a49f, type: 2}

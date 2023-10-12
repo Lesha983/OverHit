@@ -34,6 +34,7 @@ namespace ChillPlay.OverHit.Level
 
 		public Action OnPlayerWin;
 		public Action OnPlayerLose;
+		public Action OnLevelCompleted;
 
 		private Player _player;
 		private bool _levelCompleted;
